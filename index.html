@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desi Calorie Calculator | Free Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316', 
+                            600: '#ea580c',
+                            900: '#431407',
+                        },
+                        cf: {
+                            green: '#22c55e',
+                            greenDark: '#16a34a',
+                            red: '#dc2626'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col items-center py-0">
+
+    <div class="w-full bg-cf-red text-white text-center py-2 px-4 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
+        Attention: For South Asian Food Lovers
+    </div>
+
+    <div class="w-full max-w-md mx-auto px-4 sm:px-6 pb-8">
+        
+        <div class="flex flex-col items-center justify-center mb-6">
+            <span class="font-bold text-xl tracking-tight text-gray-900">The Z.A. Method</span>
+        </div>
+
+        <div class="text-center mb-6">
+            <h1 class="text-3xl sm:text-4xl font-black text-gray-900 leading-[1.4] mb-4 tracking-tight relative z-10 mt-2">
+                Stop
+                guessing your 
+                <span class="relative inline-block whitespace-nowrap z-10">
+                    Desi food
+                    <svg class="absolute w-[105%] h-3 -bottom-1 -left-[2.5%] text-cf-red pointer-events-none" viewBox="0 0 100 20" preserveAspectRatio="none">
+                        <path d="M5,12 Q50,18 95,8" stroke="currentColor" stroke-width="10" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </span> 
+                calories.
+            </h1>
+            <p class="text-base text-gray-900 px-2 font-bold mb-4">
+                You no longer have to rely on MyFitnessPal to give you generic answers. This is going to save your life.
+            </p>
+            
+            <div class="flex flex-col items-center justify-center">
+                <div class="flex text-yellow-400 mb-1">
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                </div>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Trusted by 1,000+ users</span>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-md border-t-4 border-t-brand-500 border-x border-b border-gray-200 mb-8">
+            <form id="optin-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5 ml-1">First Name</label>
+                    <input type="text" id="name" placeholder="e.g. Aisha" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-gray-50 focus:bg-white text-base" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5 ml-1">Email Address</label>
+                    <input type="email" id="email" placeholder="you@example.com" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all bg-gray-50 focus:bg-white text-base" required>
+                </div>
+                
+                <div class="pt-3">
+                    <button type="submit" class="w-full bg-cf-green hover:bg-cf-greenDark text-white font-black py-4 px-4 rounded-xl shadow-[0_6px_0_rgb(22,163,74)] hover:shadow-[0_2px_0_rgb(22,163,74)] hover:translate-y-1 transition-all flex flex-col justify-center items-center gap-1 group">
+                        <span class="text-xl tracking-wide flex items-center gap-2">
+                            GET FREE ACCESS
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </span>
+                        <span class="text-xs font-semibold text-green-100 normal-case tracking-normal">(Takes less than 10 seconds)</span>
+                    </button>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-4 flex items-center justify-center gap-1.5 font-medium">
+                    <i data-lucide="lock" class="w-3 h-3"></i> 100% Secure & Spam-Free.
+                </p>
+            </form>
+
+            <div id="success-message" class="hidden text-center py-6">
+                <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500">
+                    <i data-lucide="check" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">Access Granted!</h3>
+                <p class="text-sm text-gray-500 mb-6">Opening the calculator...</p>
+                <div class="animate-pulse flex space-x-2 justify-center">
+                    <div class="w-2 h-2 bg-brand-500 rounded-full"></div>
+                    <div class="w-2 h-2 bg-brand-500 rounded-full"></div>
+                    <div class="w-2 h-2 bg-brand-500 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-4 px-2">
+            <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center flex-shrink-0 text-brand-500">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 text-sm">100+ Authentic Dishes</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Biryani, Curries, Street Food & more.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-3 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center flex-shrink-0 text-brand-500">
+                    <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-gray-900 text-sm">Accurate Macros</h4>
+                    <p class="text-xs text-gray-500 mt-0.5">Tried and tested over 12 years.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-white p-6 rounded-2xl border border-gray-200 shadow-sm text-center">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gray-200 border-4 border-white shadow-md mb-3 overflow-hidden">
+                <img src="https://firebasestorage.googleapis.com/v0/b/accountability-566c2.firebasestorage.app/o/Copy%20of%20had.png?alt=media" alt="Creator Profile" class="w-full h-full object-cover">
+            </div>
+            <h4 class="font-bold text-gray-900 mb-1">Hi, I'm Zayb</h4>
+            <p class="text-sm text-gray-600 leading-relaxed italic">
+                "I built this because I was tired of apps getting desi food calories completely wrong, so I built this using my 12 years of coaching experience working with South Asian clients. Enjoy this free tool; this will make your life so much easier"
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        document.getElementById('optin-form').addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            
+            // 1. Grab the user's details
+            const userName = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+
+            // 2. Hide form, show success message
+            this.classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
+            
+            // 3. Send data to Zapier seamlessly
+            fetch('https://hooks.zapier.com/hooks/catch/8412468/ujvhdn8/', {
+                method: 'POST',
+                mode: 'no-cors', // Bypasses browser security blocks for webhooks
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: userName, email: userEmail })
+            }).then(() => {
+                // 4. Instantly redirect them to your Lovable app!
+                window.location.href = "https://calcalc.lovable.app/";
+            }).catch(() => {
+                // Fallback redirect just in case of any network glitches
+                window.location.href = "https://calcalc.lovable.app/";
+            });
+        });
+    </script>
+</body>
+</html>
