@@ -55,6 +55,36 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col items-center py-0">
 
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-gray-900 text-white px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-2xl" style="display:none!important">
+        <p class="text-sm text-gray-300 text-center sm:text-left">🍪 We use cookies to run ads and improve your experience. <a href="https://www.zatraining.co.uk/privacy" target="_blank" class="underline text-brand-500">Privacy Policy</a></p>
+        <div class="flex gap-2 shrink-0">
+            <button onclick="acceptCookies()" class="bg-cf-green hover:bg-cf-greenDark text-white font-bold px-5 py-2 rounded-lg text-sm transition-all">Accept</button>
+            <button onclick="declineCookies()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold px-5 py-2 rounded-lg text-sm transition-all">Decline</button>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var consent = localStorage.getItem('cookie_consent');
+            if (!consent) {
+                document.getElementById('cookie-banner').style.display = 'flex';
+            }
+            if (consent === 'declined') {
+                // Remove fbq if declined
+                window.fbq = function() {};
+            }
+        })();
+        function acceptCookies() {
+            localStorage.setItem('cookie_consent', 'accepted');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+        function declineCookies() {
+            localStorage.setItem('cookie_consent', 'declined');
+            document.getElementById('cookie-banner').style.display = 'none';
+            window.fbq = function() {};
+        }
+    </script>
+
     <div class="w-full bg-cf-red text-white text-center py-2 px-4 text-xs font-bold uppercase tracking-wider mb-6 shadow-sm">
         🔥 Free Tool · For South Asian Food Lovers
     </div>
@@ -322,6 +352,12 @@
             // 1. Grab the user's details
             const userName = document.getElementById('name').value;
             const userEmail = document.getElementById('email').value;
+
+            // 1b. Tell Meta a sign-up happened (once per visit, only after the browser accepts the form)
+            if (!window.__leadFired && typeof fbq === 'function') {
+                window.__leadFired = true;
+                fbq('track', 'Lead');
+            }
 
             // 2. Hide form, show success message
             this.classList.add('hidden');
